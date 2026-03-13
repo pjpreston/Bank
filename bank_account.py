@@ -1,4 +1,4 @@
-class BankAccount:
+class Account:
     _next_account_number = 1
 
     def __init__(self, customer, opening_balance=0):
@@ -7,8 +7,8 @@ class BankAccount:
         if opening_balance < 0:
             raise ValueError("Opening balance cannot be negative.")
 
-        self.account_number = BankAccount._next_account_number
-        BankAccount._next_account_number += 1
+        self.account_number = Account._next_account_number
+        Account._next_account_number += 1
         self.customer = customer
         self.balance = opening_balance
 
