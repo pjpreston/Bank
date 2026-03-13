@@ -1,6 +1,6 @@
 import unittest
 
-from bank_account import BankAccount
+from bank_account import Bank, BankAccount
 
 
 class BankAccountTests(unittest.TestCase):
@@ -58,6 +58,25 @@ class BankAccountTests(unittest.TestCase):
 
         with self.assertRaisesRegex(ValueError, "Withdrawal amount must be greater than zero."):
             account.withdraw_cash(0)
+
+
+class BankTests(unittest.TestCase):
+    def test_bank_stores_accounts_by_account_number(self):
+        bank = Bank()
+        account = BankAccount("Alice")
+
+        bank.add_account(account)
+
+        self.assertEqual(bank.accounts, {account.account_number: account})
+
+    def test_bank_can_get_account_by_account_number(self):
+        bank = Bank()
+        account = BankAccount("Alice")
+        bank.add_account(account)
+
+        stored_account = bank.get_account(account.account_number)
+
+        self.assertIs(stored_account, account)
 
 
 if __name__ == "__main__":
