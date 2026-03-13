@@ -1,10 +1,14 @@
 class BankAccount:
+    _next_account_number = 1
+
     def __init__(self, customer, opening_balance=0):
         if not customer:
             raise ValueError("Customer is required.")
         if opening_balance < 0:
             raise ValueError("Opening balance cannot be negative.")
 
+        self.account_number = BankAccount._next_account_number
+        BankAccount._next_account_number += 1
         self.customer = customer
         self.balance = opening_balance
 

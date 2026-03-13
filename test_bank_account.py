@@ -4,6 +4,14 @@ from bank_account import BankAccount
 
 
 class BankAccountTests(unittest.TestCase):
+    def test_account_has_unique_integer_account_number(self):
+        first_account = BankAccount("Alice")
+        second_account = BankAccount("Bob")
+
+        self.assertIsInstance(first_account.account_number, int)
+        self.assertIsInstance(second_account.account_number, int)
+        self.assertNotEqual(first_account.account_number, second_account.account_number)
+
     def test_account_belongs_to_customer(self):
         account = BankAccount("Alice")
 
